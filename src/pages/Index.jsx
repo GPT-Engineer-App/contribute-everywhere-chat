@@ -6,7 +6,16 @@ const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [items, setItems] = useState([]);
+  const [currentItem, setCurrentItem] = useState("");
   const toast = useToast();
+
+  const handleAddItem = () => {
+    if (currentItem) {
+      setItems([...items, currentItem]);
+      setCurrentItem("");
+    }
+  };
 
   const handleLogin = () => {
     if (username === "Fia" && password === "1233221 Aa") {
@@ -33,9 +42,13 @@ const App = () => {
           <Button leftIcon={<FaBook />} w="full" onClick={() => alert("Notizen hinzugefügt")}>
             Notizen
           </Button>
-          <Button leftIcon={<FaUserFriends />} w="full" onClick={() => alert("Kontakte hinzugefügt")}>
-            Kontakte
-          </Button>
+          <Input placeholder="Notiz/Kalender/Kontakt hinzufügen" value={currentItem} onChange={(e) => setCurrentItem(e.target.value)} />
+          <Button onClick={handleAddItem}>Hinzufügen</Button>
+          {items.map((item, index) => (
+            <Text key={index} mt={2}>
+              {item}
+            </Text>
+          ))}
           <Link href="https://www.google.com" isExternal>
             <Button leftIcon={<FaGoogle />} w="full">
               Zu Google
