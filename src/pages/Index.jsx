@@ -28,6 +28,7 @@ const App = () => {
         <Box p={4}>
           <VStack spacing={4} align="stretch">
             <Heading>Willkommen, {username}!</Heading>
+            // Removed placeholder buttons for Forum, Chat, Notes, Calendar, and Contacts
             <Button leftIcon={<FaCalendarAlt />} w="full">
               Kalender
             </Button>
